@@ -27,11 +27,8 @@ if re.search('^[ACGTU]+$', args.seq):
 else:
     print ('The sequence is not DNA nor RNA')
 
-#searches for a motif in your sequence
-if args.motif:
-  args.motif = args.motif.upper()
-  print(f'Motif search enabled: I am looking for motif "{args.motif}" in sequence "{args.seq}"... ', end = '')
-  if re.match(args.motif, args.seq):
-    print("FOUND! oh yeah")
-  else:
-    print("NOT FOUND! Oh no!!")
+# For each nucleotide computes its percentage in the sequence
+for nucleotide in ["A","C","G","T","U"]:
+    percent = 100*args.seq.count(nucleotide)/len(args.seq)
+    if percent > 0:
+        print(nucleotide + " " + str(percent) + "%")
